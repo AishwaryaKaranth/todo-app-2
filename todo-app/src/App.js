@@ -6,7 +6,7 @@ import {useEffect} from "react";
 import firebase from "firebase";
 import {db} from "./firebase_config";
 import './App.css';
-import TodoList from "./FirstTodo";
+import FirstTodoList from "./FirstTodo";
 
 function App() {
   
@@ -156,8 +156,12 @@ function App() {
             Add
           </Button>
         </form>
-        {firstList.map((f) => (
-          <p>{f.firstTodo}</p>
+        {firstList.map((firstTodo) => (
+          <FirstTodoList
+            firstTodo={firstTodo.firstTodo}
+            inprogress={firstTodo.inprogress}
+            id={firstTodo.id}
+          />
         ))}
       </div>
       <div className="grid-item">
