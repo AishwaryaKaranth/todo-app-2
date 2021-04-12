@@ -137,7 +137,7 @@ function App() {
     <div className="App">
       <h1>Eisenhower's Matrix</h1>
       <div className="container">
-      <div className="first">
+      <div className="grid-item">
         <form>
           <TextField 
             id="standard-basic" 
@@ -159,7 +159,7 @@ function App() {
           <p>{f.firstTodo}</p>
         ))}
       </div>
-      <div className="second">
+      <div className="grid-item">
         <form>
           <TextField 
             id="standard-basic" 
@@ -181,7 +181,8 @@ function App() {
           <p>{s.secondTodo}</p>
         ))}
       </div>
-      <div className="third">
+      
+      <div className="grid-item">
         <form>
           <TextField 
             id="standard-basic" 
@@ -203,7 +204,7 @@ function App() {
           <p>{t.thirdTodo}</p>
         ))}
       </div>
-      <div className="fourth">
+      <div className="grid-item">
         <form>
           <TextField 
             id="standard-basic" 
