@@ -8,20 +8,24 @@ import {db} from "./firebase_config";
 import './App.css';
 
 function App() {
-  const [todos, setTodo]=useState("")
+  
   const [first, setFirst]=useState("")
   const [second, setSecond]=useState("")
   const [third, setThird]=useState("")
   const [fourth, setFourth]=useState("")
-  const [list, setList]=useState([])
+  const [firstList, setFirstList]=useState([])
+  const [secondList, setSecondList]=useState([])
+  const [thirdList, setThirdList]=useState([])
+  const [fourthList, setFourthList]=useState([])
+
 
   const addFirstItem=(e)=>{
     e.preventDefault();
     
-    db.collection("todo").add({
+    db.collection("first").add({
       inprogress:true,
       timestamp:firebase.firestore.FieldValue.serverTimestamp(),
-      todo:first,
+      firstTodo:first,
     });
 
     setFirst("");
@@ -31,12 +35,11 @@ function App() {
   },[]);
 
   const getFirstItem=()=>{
-    db.collection("todo").onSnapshot(function(querySnapshot){
-      
-        setList(
+    db.collection("first").onSnapshot(function(querySnapshot){
+        setFirstList(
           querySnapshot.docs.map((doc)=>({
             id:doc.id,
-            todo:doc.data().todo,
+            firstTodo:doc.data().firstTodo,
             inprogress:doc.data().inprogress,
           }))
         );
@@ -47,25 +50,25 @@ function App() {
   const addSecondItem=(e)=>{
     e.preventDefault();
     
-    db.collection("todo").add({
+    db.collection("second").add({
       inprogress:true,
       timestamp:firebase.firestore.FieldValue.serverTimestamp(),
-      todo:first,
+      secondTodo:second,
     });
 
-    setFirst("");
+    setSecond("");
   }
 
   useEffect(()=>{getSecondItem();
   },[]);
 
   const getSecondItem=()=>{
-    db.collection("todo").onSnapshot(function(querySnapshot){
+    db.collection("second").onSnapshot(function(querySnapshot){
       
-        setList(
+        setSecondList(
           querySnapshot.docs.map((doc)=>({
             id:doc.id,
-            todo:doc.data().todo,
+            secondTodo:doc.data().secondTodo,
             inprogress:doc.data().inprogress,
           }))
         );
@@ -76,25 +79,25 @@ function App() {
   const addThirdItem=(e)=>{
     e.preventDefault();
     
-    db.collection("todo").add({
+    db.collection("third").add({
       inprogress:true,
       timestamp:firebase.firestore.FieldValue.serverTimestamp(),
-      todo:first,
+      thirdTodo:third,
     });
 
-    setFirst("");
+    setThird("");
   }
 
   useEffect(()=>{getThirdItem();
   },[]);
 
   const getThirdItem=()=>{
-    db.collection("todo").onSnapshot(function(querySnapshot){
+    db.collection("third").onSnapshot(function(querySnapshot){
       
-        setList(
+        setThirdList(
           querySnapshot.docs.map((doc)=>({
             id:doc.id,
-            todo:doc.data().todo,
+            thirdTodo:doc.data().thirdTodo,
             inprogress:doc.data().inprogress,
           }))
         );
@@ -105,25 +108,24 @@ function App() {
   const addFourthItem=(e)=>{
     e.preventDefault();
     
-    db.collection("todo").add({
+    db.collection("fourth").add({
       inprogress:true,
       timestamp:firebase.firestore.FieldValue.serverTimestamp(),
-      todo:first,
+      fourthTodo:fourth,
     });
 
-    setFirst("");
+    setFourth("");
   }
 
   useEffect(()=>{getFourthItem();
   },[]);
 
   const getFourthItem=()=>{
-    db.collection("todo").onSnapshot(function(querySnapshot){
-      
-        setList(
+    db.collection("fourth").onSnapshot(function(querySnapshot){
+      setFourthList(
           querySnapshot.docs.map((doc)=>({
             id:doc.id,
-            todo:doc.data().todo,
+            fourthTodo:doc.data().fourthTodo,
             inprogress:doc.data().inprogress,
           }))
         );
@@ -134,11 +136,12 @@ function App() {
   return (
     <div className="App">
       <h1>Eisenhower's Matrix</h1>
-      <div className="first" style={{border:"1px solid red"}}>
+      <div className="container">
+      <div className="first">
         <form>
           <TextField 
             id="standard-basic" 
-            label="Standard" 
+            label="Important and Urgent" 
             value={first}
             onChange={(e)=>{
               setFirst(e.target.value)
@@ -152,15 +155,15 @@ function App() {
             Add
           </Button>
         </form>
-        {list.map((todo) => (
-          <p>{todo.todo}</p>
+        {firstList.map((f) => (
+          <p>{f.firstTodo}</p>
         ))}
       </div>
-      <div className="second" style={{border:"1px solid red"}}>
+      <div className="second">
         <form>
           <TextField 
             id="standard-basic" 
-            label="Standard" 
+            label="Important and Not Urgent" 
             value={second}
             onChange={(e)=>{
               setSecond(e.target.value)
@@ -174,15 +177,15 @@ function App() {
             Add
           </Button>
         </form>
-        {list.map((todo) => (
-          <p>{todo.todo}</p>
+        {secondList.map((s) => (
+          <p>{s.secondTodo}</p>
         ))}
       </div>
-      <div className="third" style={{border:"1px solid red"}}>
+      <div className="third">
         <form>
           <TextField 
             id="standard-basic" 
-            label="Standard" 
+            label="Not Important and Urgent" 
             value={third}
             onChange={(e)=>{
               setThird(e.target.value)
@@ -196,15 +199,15 @@ function App() {
             Add
           </Button>
         </form>
-        {list.map((todo) => (
-          <p>{todo.todo}</p>
+        {thirdList.map((t) => (
+          <p>{t.thirdTodo}</p>
         ))}
       </div>
-      <div className="fourth" style={{border:"1px solid red"}}>
+      <div className="fourth">
         <form>
           <TextField 
             id="standard-basic" 
-            label="Standard" 
+            label="Not Important and Not Urgent" 
             value={fourth}
             onChange={(e)=>{
               setFourth(e.target.value)
@@ -218,10 +221,11 @@ function App() {
             Add
           </Button>
         </form>
-        {list.map((todo) => (
-          <p>{todo.todo}</p>
+        {fourthList.map((p) => (
+          <p>{p.fourthTodo}</p>
         ))}
       </div>
+    </div>
     </div>
   );
 }
