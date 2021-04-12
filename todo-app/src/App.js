@@ -229,6 +229,7 @@ function App() {
             onChange={(e)=>{
               setFourth(e.target.value)
             }}
+            style={{width:"20vw"}}
           />
           <Button 
             variant="contained" 
