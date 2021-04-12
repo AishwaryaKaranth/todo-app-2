@@ -8,6 +8,8 @@ import {db} from "./firebase_config";
 import './App.css';
 import FirstTodoList from "./FirstTodo";
 import SecondTodoList from "./SecondTodo";
+import ThirdTodoList from "./ThirdTodo";
+import FourthTodoList from "./FourthTodo"
 
 function App() {
   
@@ -137,7 +139,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Eisenhower's Matrix</h1>
+      <h1>Eisenhower's Matrix ToDo List</h1>
       <div className="container">
       <div className="grid-item">
         <form>
@@ -210,8 +212,12 @@ function App() {
             Add
           </Button>
         </form>
-        {thirdList.map((t) => (
-          <p>{t.thirdTodo}</p>
+        {thirdList.map((thirdTodo) => (
+          <ThirdTodoList
+          thirdTodo={thirdTodo.thirdTodo}
+          inprogress={thirdTodo.inprogress}
+          id={thirdTodo.id}
+        />
         ))}
       </div>
       <div className="grid-item">
@@ -232,10 +238,12 @@ function App() {
             Add
           </Button>
         </form>
-        {fourthList.map((p) => (
-          <>
-          <p>{p.fourthTodo}</p>
-          </>
+        {fourthList.map((fourthTodo) => (
+          <FourthTodoList
+          fourthTodo={fourthTodo.fourthTodo}
+          inprogress={fourthTodo.inprogress}
+          id={fourthTodo.id}
+        />
         ))}
       </div>
     </div>
