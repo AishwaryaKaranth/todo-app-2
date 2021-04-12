@@ -7,6 +7,7 @@ import firebase from "firebase";
 import {db} from "./firebase_config";
 import './App.css';
 import FirstTodoList from "./FirstTodo";
+import SecondTodoList from "./SecondTodo";
 
 function App() {
   
@@ -182,11 +183,12 @@ function App() {
             Add
           </Button>
         </form>
-        {secondList.map((s) => (
-          <>
-          <p>{s.secondTodo}</p>
-          <p>{s.timestamp}</p>
-          </>
+        {secondList.map((secondTodo) => (
+          <SecondTodoList
+          secondTodo={secondTodo.secondTodo}
+          inprogress={secondTodo.inprogress}
+          id={secondTodo.id}
+        />
         ))}
       </div>
       
