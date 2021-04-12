@@ -163,7 +163,7 @@ function App() {
         <form>
           <TextField 
             id="standard-basic" 
-            label="Important and Not Urgent" 
+            label="Important but Not Urgent" 
             value={second}
             onChange={(e)=>{
               setSecond(e.target.value)
@@ -178,7 +178,10 @@ function App() {
           </Button>
         </form>
         {secondList.map((s) => (
+          <>
           <p>{s.secondTodo}</p>
+          <p>{s.timestamp}</p>
+          </>
         ))}
       </div>
       
@@ -186,7 +189,7 @@ function App() {
         <form>
           <TextField 
             id="standard-basic" 
-            label="Not Important and Urgent" 
+            label="Not Important but Urgent" 
             value={third}
             onChange={(e)=>{
               setThird(e.target.value)
@@ -208,7 +211,7 @@ function App() {
         <form>
           <TextField 
             id="standard-basic" 
-            label="Not Important and Not Urgent" 
+            label="Not Important Not Urgent" 
             value={fourth}
             onChange={(e)=>{
               setFourth(e.target.value)
