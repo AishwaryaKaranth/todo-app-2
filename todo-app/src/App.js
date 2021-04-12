@@ -6,6 +6,7 @@ import {useEffect} from "react";
 import firebase from "firebase";
 import {db} from "./firebase_config";
 import './App.css';
+import TodoList from "./FirstTodo";
 
 function App() {
   
@@ -226,7 +227,9 @@ function App() {
           </Button>
         </form>
         {fourthList.map((p) => (
+          <>
           <p>{p.fourthTodo}</p>
+          </>
         ))}
       </div>
     </div>
